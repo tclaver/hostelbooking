@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesdup.css">
+    <title>CLAVERTAB - Hostel Booking</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">CLAVERTAB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <!-- Add other nav items here -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Search Box -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by location or name">
+        <button type="button" onclick="searchHostels()">Search</button>
+    </div>
+
+    <!-- Hostels Cards Section -->
+    <section class="hostels-section">
+        <div class="container" id="hostelList">
+            <div class="row">
+                <!-- Hostel Card 1 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/theresa.jpg" alt="Theresa">
+                        <div class="card-details">
+                            <h2>St. Theresa's Hostel</h2>
+                            <p>Location: Ayeduase</p>
+                            <button class="book-button" onclick="bookHostel('St. Theresa\'s Hostel', 'Ayeduase', 'image/theresa.jpg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 2 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/amandah.jpeg" alt="Amandah">
+                        <div class="card-details">
+                            <h2>Amandah Hostel</h2>
+                            <p>Location: Ayeduase</p>
+                            <button class="book-button" onclick="bookHostel('Amandah Hostel', 'Ayeduase', 'image/amandah.jpeg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 3 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/jecado.jpeg" alt="Jecado">
+                        <div class="card-details">
+                            <h2>Jeccado Hostel</h2>
+                            <p>Location: Kotei</p>
+                            <button class="book-button" onclick="bookHostel('Jeccado Hostel', 'Kotei', 'image/jecado.jpeg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 4 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/franco.jpg" alt="Franco">
+                        <div class="card-details">
+                            <h2>Franco Hostel</h2>
+                            <p>Location: Kotei</p>
+                            <button class="book-button" onclick="bookHostel('Franco Hostel', 'Kotei', 'image/franco.jpg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 5 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/fredmark.jpeg" alt="Fredmark">
+                        <div class="card-details">
+                            <h2>Fredmark Hostel</h2>
+                            <p>Location: Kotei</p>
+                            <button class="book-button" onclick="bookHostel('Fredmark Hostel', 'Kotei', 'image/fredmark.jpeg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 6 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/destiny.jpeg" alt="Destiny">
+                        <div class="card-details">
+                            <h2>Destiny Hostel</h2>
+                            <p>Location: Ayeduase</p>
+                            <button class="book-button" onclick="bookHostel('Destiny Hostel', 'Ayeduase', 'image/destiny.jpeg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 7 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/happyfam.jpg" alt="Happy Family">
+                        <div class="card-details">
+                            <h2>Happy Family</h2>
+                            <p>Location: Ayeduase</p>
+                            <button class="book-button" onclick="bookHostel('Happy Family', 'Ayeduase', 'image/happyfam.jpg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 8 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/hydes.jpg" alt="Hydes">
+                        <div class="card-details">
+                            <h2>The Hydes Hostel</h2>
+                            <p>Location: Kotei</p>
+                            <button class="book-button" onclick="bookHostel('The Hydes Hostel', 'Kotei', 'image/hydes.jpg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hostel Card 9 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="image/shalomkibutz.jpeg" alt="Shalom">
+                        <div class="card-details">
+                            <h2>Shalom Kibutz Hostel</h2>
+                            <p>Location: Ayeduase</p>
+                            <button class="book-button" onclick="bookHostel('Shalom Kibutz Hostel', 'Ayeduase', 'image/shalomkibutz.jpeg')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            
+            <div class="row">
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+            
+            <div class="row">
+                Tabie Peter Copyright © 2021 Inferno - All rights reserved || Designed By: Mahesh 
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function bookHostel(name, location, image, description, price, amenities) {
+            const params = new URLSearchParams({ 
+                name, location, image, description, price, amenities 
+            });
+            window.location.href = `trialdup.html?${params.toString()}`;
+        }
+    
+        function searchHostels() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const hostelList = document.getElementById('hostelList');
+            const allCards = Array.from(hostelList.getElementsByClassName('col-md-4'));
+    
+            let resultsFound = false;
+    
+            allCards.forEach(card => {
+                const title = card.querySelector('.card-details h2').textContent.toLowerCase();
+                const location = card.querySelector('.card-details p').textContent.toLowerCase();
+    
+                if (title.includes(searchInput) || location.includes(searchInput)) {
+                    card.style.display = 'block';
+                    resultsFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+    
+            if (!resultsFound) {
+                // No results found message
+                if (!document.getElementById('noResults')) {
+                    const noResults = document.createElement('p');
+                    noResults.id = 'noResults';
+                    noResults.textContent = 'No results found.';
+                    hostelList.appendChild(noResults);
+                }
+            } else {
+                const noResultsElement = document.getElementById('noResults');
+                if (noResultsElement) {
+                    noResultsElement.remove();
+                }
+            }
+        }
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>KNUST Hostels | CLAVERTAB</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">CLAVERTAB</div>
+      <ul class="nav__links">
+        <li class="link"><a href="indexdup.html">Home</a></li>
+        <li class="link"><a href="hostelsdup.html">Book</a></li>
+        <li class="link"><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+    <header class="section__container header__container">
+      <div class="header__image__container">
+        <div class="header__content">
+          <h1>Enjoy Your Stay In School</h1>
+          <p>Book Affordable Hostels</p>
+        </div>
+    </header>
+
+    <main>
+      <section class="section__container popular__container">
+        <h2 class="section__header">Popular Hostels</h2>
+        <div class="popular__grid">
+          <div class="popular__card" onclick="showHostelDetails('theresa')">
+            <img src="image/theresa.jpg" alt="St. Theresa's Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>St. Theresa's Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>Ayeduase</p>
+            </div>
+          </div>
+          <div class="popular__card" onclick="showHostelDetails('jecado')">
+            <img src="image/jecado.jpeg" alt="Jecado Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>Jecado Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>KSB Gate, Ayeduase</p>
+            </div>
+          </div>
+          <div class="popular__card" onclick="showHostelDetails('jecado')">
+            <img src="image/hydes.jpg" alt="Hydes Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>The Hydes Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>Kotei</p>
+            </div>
+          </div>
+          <div class="popular__card" onclick="showHostelDetails('lienda')">
+            <img src="image/lienda.webp" alt="Lienda Ville Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>Lienda Ville Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>Afrifa Junction, Ayeduase</p>
+            </div>
+          </div>
+          <div class="popular__card" onclick="showHostelDetails('happy family')">
+            <img src="image/happyfam.jpg" alt="Happy Family Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>Happy Family Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>Ayeduase</p>
+            </div>
+          </div>
+          <div class="popular__card" onclick="showHostelDetails('adom bi')">
+            <img src="image/adombi.jpg" alt="Adom Bi Hostel" />
+            <div class="popular__content">
+              <div class="popular__card__header">
+                <h4>Adom Bi Hostel</h4>
+                <h4>GH₵ 0000.00</h4>
+              </div>
+              <p>Ayeduase</p>
+            </div>
+          </div>
+          
+          <!-- Add more hostel cards as needed -->
+        </div>
+      </section>
+    </main>
+
+    <div id="hostelModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="hostelDetails"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h3>CLAVERTAB</h3>
+          <p>
+            CLAVERTAB is a premier hostel booking website that offers a seamless and
+            convenient way to find and book accommodations worldwide.
+          </p>
+          <p>
+            With a user-friendly interface and a vast selection of hostels,
+            CLAVERTAB aims to provide a stress-free experience for travelers
+            seeking the perfect stay.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <p>About Us</p>
+          <p>Our Team</p>
+          <p>Blog</p>
+          <p>Book</p>
+          <p>Contact Us</p>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <p>FAQs</p>
+          <p>Terms & Conditions</p>
+          <p>Privacy Policy</p>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <p>Social Media</p>
+          <p>Help Center</p>
+          <p>Partnerships</p>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2024 Peter Tabie. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

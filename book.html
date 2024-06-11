@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Process</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .step-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            width: 33.33%;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="step-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress1"></div>
+        </div>
+        <div class="step active" id="step1">
+            <h2>Step 1: User Details</h2>
+            <form id="userDetailsForm">
+                <div id="firstNameDiv">
+                    First Name: <input type="text" name="firstName" id="firstName" required><br>
+                </div>
+                <div id="middleNameDiv">
+                    Middle Name: <input type="text" name="middleName" id="middleName"><br>
+                </div>
+                <div id="lastNameDiv">
+                    Last Name: <input type="text" name="lastName" id="lastName" required><br>
+                </div>
+                <div id="yearDiv">
+                    Year: <input type="number" name="year" id="year" min="1" max="4" required><br>
+                </div>
+                <div class="container">
+                    <form id="login" onsubmit="process(event)">
+                      <p>Enter your phone number:</p>
+                      <input id="phone" type="tel" name="phone" />
+                      <input type="submit" class="btn" value="Verify" />
+                    </form>
+                    <div class="alert alert-info" style="display: none"></div>
+                    <div class="alert alert-error" style="display: none"></div>
+                  </div>
+                <div id="schoolIdDiv">
+                    School ID Number: <input type="text" name="schoolId" id="schoolId" required><br>
+                </div>
+                <div id="emailDiv">
+                    Email: <input type="email" name="email" id="email" required><br>
+                </div>
+                <button type="button" onclick="validateStep1()">Next</button>
+                <div id="step1Error" class="error"></div>
+            </form>
+        </div>
+        <div class="step" id="step2">
+            <h2>Step 2: Room Selection and Confirmation</h2>
+            <form id="roomSelectionForm">
+                <div>
+                    <label for="roomType">Room Type:</label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="" disabled selected>Select Room Type</option>
+                        <option value="single">1-in-1</option>
+                        <option value="double">2-in-1</option>
+                        <option value="triple">3-in-1</option>
+                        <option value="four">4-in-1</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="paymentMethod">Payment Method:</label>
+                    <form>
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
+                        <button type="button" onclick="payWithPaystack()"> Pay </button> 
+                      </form>
+                </div>
+                <button type="button" onclick="nextStep(1)">Previous</button>
+                <button type="button" onclick="validateStep2()">Next</button>
+                <div id="step2Error" class="error"></div>
+            </form>
+        </div>
+        <div class="step" id="step3">
+            <h2>Step 3: Payment</h2>
+            <form id="paymentForm">
+                <!-- Payment form -->
+                <button type="submit">Confirm Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+            if (step > currentStep && step <= 3) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep = step;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgressBar();
+            }
+        }
+
+        function updateProgressBar() {
+            const progressWidth = currentStep * 33.33;
+            document.getElementById('progress1').style.width = `${progressWidth}%`;
+        }
+
+        function validateStep1() {
+            // Validation code for step 1
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const year = document.getElementById('year').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const schoolId = document.getElementById('schoolId').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // Validation for School ID Number
+            const schoolIdRegex = /^[0-9]{8,}$/;
+            if (!schoolIdRegex.test(schoolId)) {
+                document.getElementById('schoolIdDiv').classList.add('error');
+                document.getElementById('step1Error').innerText = 'School ID Number must contain only digits and be at least 8 characters long.';
+                return;
+            } else {
+                document.getElementById('schoolIdDiv').classList.remove('error');
+            }
+
+            // Validation for Year
+            if (isNaN(year) || year < 1 || year > 4) {
+                document.getElementById('yearDiv').classList.add('error');
+                document.getElementById('step1Error').innerText = 'Year must be a number between 1 and 4.';
+                return;
+            } else {
+                document.getElementById('yearDiv').classList.remove('error');
+            }
+
+            // Validation for Phone Number
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneDiv').classList.add('error');
+                document.getElementById('step1Error').innerText = 'Phone Number must contain exactly 10 digits.';
+                return;
+            } else {
+                document.getElementById('phoneDiv').classList.remove('error');
+            }
+
+                    // Other validations (compulsory fields)
+        let errorMessage = '';
+        if (firstName === '') {
+            errorMessage += 'First Name is required. ';
+        }
+        if (lastName === '') {
+            errorMessage += 'Last Name is required. ';
+        }
+        if (phone === '') {
+            errorMessage += 'Phone Number is required. ';
+        }
+        if (email === '') {
+            errorMessage += 'Email is required. ';
+        }
+
+        // Display error message if any field is missing
+        if (errorMessage !== '') {
+            document.getElementById('step1Error').innerText = errorMessage;
+            return;
+        }
+
+        // If all validations pass, proceed to next step
+        nextStep(2);
+    }
+        function validateStep2() {
+            const roomType = document.getElementById('roomType').value;
+
+            if (roomType === '') {
+                document.getElementById('step2Error').innerText = 'Please select a Room Type.';
+                return;
+            } else {
+                document.getElementById('step2Error').innerText = '';
+                nextStep(3);
+            }
+        }
+        <!-- place below the html form -->
+
+  function payWithPaystack(){
+    var handler = PaystackPop.setup({
+      key: 'pk_test_e570c202f4b918ad8189547f972c40b54d52237e',
+      email: 'customer@email.com',
+      amount: 10000,
+      ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "+233530689975"
+            }
+         ]
+      },
+      callback: function(response){
+          alert('success. transaction ref is ' + response.reference);
+      },
+      onClose: function(){
+          alert('window closed');
+      }
+    });
+    handler.openIframe();
+  }
+// Phone script
+const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+    });
+
+    const info = document.querySelector(".alert-info");
+    const error = document.querySelector(".alert-error");
+
+    function process(event) {
+      event.preventDefault();
+
+      const phoneNumber = phoneInput.getNumber();
+
+      info.style.display = "none";
+      error.style.display = "none";
+
+      const data = new URLSearchParams();
+      data.append("phone", phoneNumber);
+
+      fetch("http://<your-url-here>.twil.io/lookup", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.success) {
+            info.style.display = "";
+            info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+          } else {
+            console.error(json.error);
+            error.style.display = "";
+            error.innerHTML = json.error;
+          }
+        })
+        .catch((err) => {
+          error.style.display = "";
+          error.innerHTML = `Something went wrong: ${err}`;
+        });
+    }
+
+    </script>
+</body>
+</html>

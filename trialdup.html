@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesdup.css">
+    <title>CLAVERTAB - Hostel Details</title>
+    <style>
+        .hostel-details-section .row {
+            margin-top: 30px;
+        }
+        .hostel-details-section .col {
+            padding: 0 15px;
+        }
+        .hostel-details-section h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .hostel-details-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .hostel-details-section ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">CLAVERTAB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <!-- Add other nav items here -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hostel Details Section -->
+    <section class="hostel-details-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="hostelImage" src="" alt="Hostel Image" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2 id="hostelName"></h2>
+                    <p id="hostelLocation"></p>
+                    <p id="hostelDescription"></p>
+                    <p id="hostelPrice"></p>
+                    <p id="hostelAmenities"></p>
+                    <a href="book.html"><button class="book-button"> Book Now  </button></a>
+                </div>
+            </div>
+            <!-- Facilities and Price Range Section -->
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h3>Facilities</h3>
+                    <ul id="hostelFacilities">
+                        <li>CCTV Cameras</li>
+                        <li>Fire Extinguisher</li>
+                        <li>Cleaners</li>
+                        <li>TV Room</li>
+                        <li>Study Room</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Potential Price Range</h3>
+                    <ul id="priceRange">
+                        <li>Two In One Room: GH₵ 5,400.00 - 6,700.00</li>
+                        <li>Three In One Room: GH₵ 3,800.00 - 5,200.00</li>
+                        <li>Four In One Room: GH₵ N/A</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            
+            <div class="row">
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+            
+            <div class="row">
+                Tabie Peter Copyright © 2021 Inferno - All rights reserved || Designed By: Mahesh 
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const hostelName = params.get('name');
+            const hostelLocation = params.get('location');
+            const hostelImage = params.get('image');
+            const hostelDescription = params.get('description');
+            const hostelPrice = params.get('price');
+            const hostelAmenities = params.get('amenities');
+
+            document.getElementById('hostelName').textContent = hostelName;
+            document.getElementById('hostelLocation').textContent = `Location: ${hostelLocation}`;
+            document.getElementById('hostelImage').src = hostelImage;
+            document.getElementById('hostelDescription').textContent = hostelDescription;
+            document.getElementById('hostelPrice').textContent = `Price: $${hostelPrice} per night`;
+            document.getElementById('hostelAmenities').textContent = `Amenities: ${hostelAmenities}`;
+        });
+    </script>
+</body>
+</html>
